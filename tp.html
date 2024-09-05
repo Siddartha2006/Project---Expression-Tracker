@@ -1,0 +1,74 @@
+<!--DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User List</title>
+</head>
+<body>
+    <h1>USER DATA:</h1>
+
+    <ol></ol>
+    <button id="show">Show data</button>
+    <script>
+        document.getElementById('show').addEventListener('click',function (){
+            fetch('https://reqres.in/api/users?page=2')
+            .then(res => res.json())
+            .then(response => {
+                const users = response.data;
+                users.forEach(user => {
+                    const markup = `<li>${user.first_name} ${user.last_name} - ${user.email}</li>`;
+                    document.querySelector('ol').insertAdjacentHTML('beforeend', markup);
+                });
+            })
+            .catch(error => console.error('Error:', error));
+        })
+
+    </script>
+</body>
+</html>
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User List</title>
+</head>
+<body>
+    <h1>USER DATA:</h1>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <button id="show">Show data</button>
+
+    <script>
+        document.getElementById('show').addEventListener('click', function () {
+            fetch('https://reqres.in/api/users?page=2')
+                .then(res => res.json())
+                .then(response => {
+                    const users = response.data;
+                    users.forEach(user => {
+                        const markup = `
+                            <tr>
+                                <td>${user.first_name}</td>
+                                <td>${user.last_name}</td>
+                                <td>${user.email}</td>
+                            </tr>`;
+                        document.querySelector('tbody').insertAdjacentHTML('beforeend', markup);
+                    });
+                })
+                
+        });
+    </script>
+</body>
+</html>

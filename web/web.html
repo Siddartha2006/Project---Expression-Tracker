@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JOY WITH LEARNING</title>
+    <link rel="stylesheet" href="webstyle.css">
+</head>
+<body>
+    <div id="header">
+        <nav>
+            <h1>JOY   WITH   LEARNING</h1>
+            <a href="/login/login.html"><i class="fa-solid fa-user"> login</i></a>
+        </nav>
+    </div>
+    <div id="container">
+        <div class="game">
+            <img src="image.png" alt="">
+            <h2>GUESSING GAME</h2>
+            <p>The player’s goal is to correctly identify objects within an image.</p>
+            <a href="/game2/gameindex.html"><button><p>Play Now</p></button></a>
+        </div>
+        <div class="game">
+            <img src="word.jpg" alt="">
+            <h2>WORD PUZZLE</h2>
+            <p>It is a challenging word game where you create words.</p>
+            <a href="/game1/indeg.html"><button><p>Play Now</p></button></a>
+        </div>
+    </div>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+
+    <script type="text/javascript">
+        // Initialize VanillaTilt for all elements with the class "game"
+        VanillaTilt.init(document.querySelectorAll(".game"), {
+            max: 25,
+            speed: 400,
+        });
+    </script>
+    
+</html>
