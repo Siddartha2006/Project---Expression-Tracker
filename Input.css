@@ -1,0 +1,99 @@
+/* Container */
+.container {
+    font-family: 'Arial', sans-serif;
+    padding: 0;
+    margin: 0;
+  }
+  
+  /* Navbar */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background-color: #fff;
+  }
+  
+  .logo h2 {
+    font-size: 24px;
+    color: #3a3a3a;
+  }
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+  }
+  
+  .nav-links li {
+    font-size: 16px;
+    cursor: pointer;
+    color: #3a3a3a;
+  }
+  
+  /* Auth Buttons */
+  .auth-buttons {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .btn {
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor:pointer;
+    border: none;
+  }
+  .join {
+    background-color: #ff9e42;
+    color: white;
+  }
+  
+  .login {
+    background-color: white;
+    color: #ff9e42;
+    border: 2px solid #ff9e42;
+  }
+  
+  /* Hero Section */
+  .hero-section {
+    display: flex;
+    justify-content: space-between;
+    padding: 100px 50px;
+    background: linear-gradient(90deg, #8a65ff, #8fd3fe);
+    color: white;
+  }
+  
+  .hero-text {
+    max-width: 500px;
+  }
+  
+  .hero-text h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+  }
+  
+  .hero-text p {
+    font-size: 18px;
+    margin-bottom: 40px;
+  }
+  
+  .hero-btn {
+    background-color: #ff9e42;
+    color: white;
+    font-size: 16px;
+  }
+  
+  .hero-image img {
+    max-width: 500px;
+  }
+  @media (max-width: 768px) {
+    .login-container {
+      flex-direction: column;
+    }
+  
+    .left-section, .right-section {
+      width: 100%;
+      padding: 40px 20px;
+    }
+  }
+  
