@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webcam Emotion Analysis</title>
+</head>
+<body>
+    <video id="webcam" autoplay></video>
+    <canvas id="snapshot" style="display:none;"></canvas>
+    <button id="capture">Capture and Analyze Emotion</button>
+    <pre id="result"></pre> <!-- Display the result here -->
+
+    <script src="webcam.js"></script> <!-- Link to your JavaScript file -->
+</body>
+</html>
