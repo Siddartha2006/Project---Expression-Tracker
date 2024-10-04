@@ -1,0 +1,87 @@
+document.addEventListener('DOMContentLoaded', () => {
+    const video = document.getElementById('webcam');
+    const canvas = document.getElementById('snapshot');
+    const resultElement = document.getElementById('result');
+    const captureButton = document.getElementById('capture');
+
+    // Start the webcam stream
+    navigator.mediaDevices.getUserMedia({ video: true })
+        .then(stream => {
+            video.srcObject = stream;
+        })
+        .catch(error => {
+            console.error('Error accessing the webcam:', error);
+        });
+
+    // Capture the image from the webcam when the button is clicked
+    captureButton.addEventListener('click', () => {
+        // Draw the video frame onto the canvas
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        const context = canvas.getContext('2d');
+        context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+        // Convert the canvas image to a Blob
+        canvas.toBlob(async (blob) => {
+            try{
+                // Get the emotion analysis result
+                const result = await analyzeExpression(blob);
+                const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+                const imageName = image_${timestamp}.jpg;
+
+                // Save the image locally
+                downloadBlob(blob, imageName);
+
+                // Save the emotion result to a CSV file
+                const csvBlob = createCSVBlob(imageName, result);
+                downloadBlob(csvBlob, emotion_results_${timestamp}.csv);
+
+                // Display the result
+                resultElement.textContent = JSON.stringify(result, null, 2);
+            } catch (error) {
+                console.error('Error analyzing expression:', error);
+                resultElement.textContent = "Error analyzing expression: " + error.message;
+            }
+        }, 'image/jpeg'); // You can change the format if needed
+    });
+
+    // Function to perform expression analysis
+    async function analyzeExpression(imageBlob) {
+        const response = await fetch(
+            "https://api-inference.huggingface.co/models/trpakov/vit-face-expression",
+            {
+                headers: {
+                    Authorization: "Bearer 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", // Replace with your Hugging Face API key
+                    "Content-Type": "application/octet-stream",
+                },
+                method: "POST",
+                body: imageBlob, // Send the image blob in the request body
+            }
+        );
+
+        if (!response.ok) {
+            throw new Error(HTTP error! status: ${response.status});
+        }
+
+        const result = await response.json();
+        return result;
+    }
+
+    // Function to trigger a download for a Blob object
+    function downloadBlob(blob, fileName) {
+        const link = document.createElement('a');
+        const url = URL.createObjectURL(blob);
+        link.href = url;
+        link.download = fileName;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url); // Clean up the URL object
+    }
+
+    // Function to create a CSV Blob
+    function createCSVBlob(imageName, result) {
+        const csvContent = Image,Emotion,Score\n${imageName},${result.label},${result.score}\n;
+        return new Blob([csvContent], { type: 'text/csv' });
+    }
+});
