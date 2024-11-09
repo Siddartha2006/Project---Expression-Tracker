@@ -202,7 +202,6 @@ const MODEL_URL = "https://api-inference.huggingface.co/models/trpakov/vit-face-
 
 // Endpoint to check if analysis exists for a session
 app.get('/sessions/analysis/:sessionId', async (req, res) => {
-    console.log("hi hi");
     const { sessionId } = req.params;
     try {
         // Find the session by sessionId
@@ -302,7 +301,6 @@ app.post('/sessions/analyze/:sessionId', async (req, res) => {
 // Endpoint to save analysis results in MongoDB
 const saveAnalysisResults = async (sessionId, analysisResults) => {
     // Check if analysisResults is an array
-    console.log("Save.......... function called");
     if (!Array.isArray(analysisResults)) {
         console.error('Analysis results must be provided as an array');
         return { success: false, message: 'Analysis results must be an array' };
@@ -331,7 +329,7 @@ const saveAnalysisResults = async (sessionId, analysisResults) => {
 
 
 // Helper function to send the image to Hugging Face model
-async function sendImageToModel(imageBuffer, retries = 5, delay = 5000) {
+async function sendImageToModel(imageBuffer, retries = 7, delay = 7000) {
     // Convert the image buffer to base64 encoding
     console.log("SendImageToModel function called ");
     const base64Image = imageBuffer.toString('base64');
@@ -370,6 +368,91 @@ async function sendImageToModel(imageBuffer, retries = 5, delay = 5000) {
     }
   
     throw new Error('Exceeded retry limit, unable to process the image.');
+    // Retry logic function (add at the top or in a separate utility file)
+async function sendImageWithRetry(imagePath, maxRetries = 3) {
+    let attempt = 0;
+    while (attempt < maxRetries) {
+        try {
+            const response = await axios.post('https://api-inference.huggingface.co/models/your-model-id', {
+                image: imagePath,
+            });
+            console.log('Image processed successfully:', response.data);
+            return response.data;
+        } catch (error) {
+            if (error.response && error.response.status === 429) {
+                attempt++;
+                const delay = Math.pow(2, attempt) * 1000; // Exponential backoff
+                console.warn(`Rate limit exceeded, retrying in ${delay / 1000} seconds...`);
+                await new Promise(resolve => setTimeout(resolve, delay));
+            } else {
+                console.error('Error processing image:', error);
+                throw error; // Exit on non-429 errors
+            }
+        }
+    }
+    throw new Error('Max retries reached. Failed to send image.');
+}
+
+// Retry logic function (add at the top or in a separate utility file)
+async function sendImageWithRetry(imagePath, maxRetries = 3) {
+    let attempt = 0;
+    while (attempt < maxRetries) {
+        try {
+            const response = await axios.post('https://api-inference.huggingface.co/models/your-model-id', {
+                image: imagePath,
+            });
+            console.log('Image processed successfully:', response.data);
+            return response.data;
+        } catch (error) {
+            if (error.response && error.response.status === 429) {
+                attempt++;
+                const delay = Math.pow(2, attempt) * 1000; // Exponential backoff
+                console.warn(`Rate limit exceeded, retrying in ${delay / 1000} seconds...`);
+                await new Promise(resolve => setTimeout(resolve, delay));
+            } else {
+                console.error('Error processing image:', error);
+                throw error; // Exit on non-429 errors
+            }
+        }
+    }
+    throw new Error('Max retries reached. Failed to send image.');
+}
+
+// Retry logic function (add at the top or in a separate utility file)
+async function sendImageWithRetry(imagePath, maxRetries = 3) {
+    let attempt = 0;
+    while (attempt < maxRetries) {
+        try {
+            const response = await axios.post('https://api-inference.huggingface.co/models/your-model-id', {
+                image: imagePath,
+            });
+            console.log('Image processed successfully:', response.data);
+            return response.data;
+        } catch (error) {
+            if (error.response && error.response.status === 429) {
+                attempt++;
+                const delay = Math.pow(2, attempt) * 1000; // Exponential backoff
+                console.warn(`Rate limit exceeded, retrying in ${delay / 1000} seconds...`);
+                await new Promise(resolve => setTimeout(resolve, delay));
+            } else {
+                console.error('Error processing image:', error);
+                throw error; // Exit on non-429 errors
+            }
+        }
+    }
+    throw new Error('Max retries reached. Failed to send image.');
+}
+
+async function handleImageUpload(imagePath) {
+    try {
+        const data = await sendImageWithRetry(imagePath);
+        console.log('Image processed successfully:', data);
+        return data;
+    } catch (error) {
+        console.error('Error sending image to Hugging Face model:', error);
+    }
+}
+    
   }
   // API to get all sessions
   app.get('/detailed_sessions/:sessionId', async (req, res) => {
@@ -385,8 +468,6 @@ async function sendImageToModel(imageBuffer, retries = 5, delay = 5000) {
       res.status(500).json({ message: 'Error fetching session data' });
     }
   });
-  
-
 (async () => {
     try {
         await connectToDB(); // Establish the MongoDB connection
