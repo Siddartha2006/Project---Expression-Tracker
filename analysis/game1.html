@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emotion Analysis</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Emotion Analysis Results</h1>
+        <div class="data-display">
+            <h2>Data</h2>
+            <pre id="data-output"></pre>
+        </div>
+        <div class="charts">
+            <div class="chart-container">
+                <h2>Pie Chart of Emotion Scores</h2>
+                <canvas id="pieChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <h2>Histogram of Emotion Scores</h2>
+                <canvas id="histogramChart"></canvas>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

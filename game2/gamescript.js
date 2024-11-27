@@ -24,9 +24,9 @@ function loadNewImage() {
 }
 
 function displayWinMessage() {
-    // Remove all elements except the header
-    document.body.innerHTML = ''; // Clear everything
-    let h = document.createElement('h1'); // Create a new header element
+
+    document.body.innerHTML = '';
+    let h = document.createElement('h1'); 
     h.textContent = 'HURRAY!! YOU WON!';
     h.style.color = 'green';
     h.style.textAlign = 'center'; 
@@ -39,7 +39,7 @@ document.getElementById('submit-guess').addEventListener('click', function () {
     const userGuess = document.getElementById('guess-input').value.toLowerCase();
     const correctAnswer = images[currentIndex].answer.toLowerCase();
     speech.text = document.getElementById('guess-input').value;
-    window.speechSynthesis.cancel(); // Stop any ongoing speech
+    window.speechSynthesis.cancel(); 
     window.speechSynthesis.speak(speech);
     
     if (userGuess === correctAnswer) {
@@ -50,11 +50,11 @@ document.getElementById('submit-guess').addEventListener('click', function () {
         h.textContent = 'Correct!';
         h.style.color='green';
         score++;
-        //document.getElementById('next-image').style.display = 'inline';
+        //document.getElementById('next7-image').style.display = 'inline';
         currentIndex++;
         document.getElementById('score').textContent = `SCORE: ${score}/${images.length}`;
         
-        if (currentIndex >= images.length) {
+        if (currentIndex == images.length) {
             displayWinMessage(); // Display win message if all images have been guessed
             speech.text = 'HURRAY!! YOU WON!'
             //window.speechSynthesis.cancel(); // Stop any ongoing speech

@@ -1,45 +1,43 @@
-const ans = ["doll", "bear", "gift", "ball"];
+const answers = ["doll", "bear", "gift", "ball"];
+let userGuesses = ["", "", "", ""];
 
-function checkguess() {
+document.querySelectorAll(".option").forEach(button => {
+    button.addEventListener("click", function() {
+        const wordIndex = button.getAttribute("data-word");
 
-    const g1 = document.getElementById("guess1").value.toLowerCase();
-    const g2 = document.getElementById("guess2").value.toLowerCase();
-    const g3 = document.getElementById("guess3").value.toLowerCase();
-    const g4 = document.getElementById("guess4").value.toLowerCase();
+        document.querySelectorAll(`button[data-word="${wordIndex}"]`).forEach(opt => {
+            opt.classList.remove("selected");
+        });
 
+        button.classList.add("selected");
+        userGuesses[wordIndex] = button.textContent.toLowerCase(); // Update user's guess
+    });
+});
+
+
+function displayWinMessage() {
+    const overlay = document.createElement("div");
+    overlay.id = "winOverlay";
+    overlay.innerHTML = "<h1>HURRAY!! YOU WON!</h1>";
+    document.body.appendChild(overlay);
+}
+
+// Check answers and show overlay if correct
+function checkAnswers() {
     let score = 0;
-    if (g1 === ans[0]) {
-        score++;
-    }
-    if (g2 === ans[1]) {
-        score++;
-    }
-    if (g3 === ans[2]) {
-        score++;
-    }
-    if (g4 === ans[3]) {
-        score++;
-    }
-    function displayWinMessage() {
-        // Remove all elements except the header
-        document.body.innerHTML = ''; // Clear everything
-        let h = document.createElement('h1'); // Create a new header element
-        h.textContent = 'HURRAY!! YOU WON!';
-        h.style.color = 'black';
-        h.style.textAlign = 'center';
-        h.style.justifyContent='center;'
-        document.body.appendChild(h); 
-        
-    }
-
-    const result = document.getElementById('result');
+    answers.forEach((answer, index) => {
+        if (userGuesses[index] === answer) {
+            score++;
+        }
+    });
 
     if (score === 4) {
-        displayWinMessage()
-
+        displayWinMessage();
     } else {
+        const result = document.getElementById('result');
         result.textContent = `You got ${score} out of 4 correct. Try again!`;
         result.style.color = "red";
     }
 }
-document.getElementById("but").addEventListener("click", checkguess);
+
+document.getElementById("capture").addEventListener("click", checkAnswers);

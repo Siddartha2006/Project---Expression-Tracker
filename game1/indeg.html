@@ -3,36 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Word Puzzle</title>
+    <title>Word Puzzle MCQ</title>
     <link rel="stylesheet" href="indexg.css">
 </head>
 <body>
-    <header><h1>WORD PUZZLE</h1><br><p><h4>Input should be given linewise. <br> Word is of four words.</h4></p></header>
+    <header>
+        <h1>WORD PUZZLE</h1>
+        <h4>Input should be given linewise. <br> Word is of four words.</h4>
+    </header>
     <div class="container">
         <div id="img">
-            <img src="wordpuzzle.png" alt="" >
+            <img src="wordpuzzle.png" alt="Word Puzzle Image">
         </div>
-        <div class="guess">
-            <label for="input" ><b>Guess: </b></label>
-            <input type="text" id="guess1">
+        <div class="mcq">
+            <h3>Word 1:</h3>
+            <button class="option" data-word="0">Doll</button>
+            <button class="option" data-word="0">Toys</button>
+            <button class="option" data-word="0">Dull</button>
+            <button class="option" data-word="0">fool</button>
         </div>
-        <div class="guess">
-            <label for="input" ><b>Guess: </b></label>
-            <input type="text" id="guess2">
+        <div class="mcq">
+            <h3>Word 2:</h3>
+            <button class="option" data-word="1">Ears</button>
+            <button class="option" data-word="1">Bear</button>
+            <button class="option" data-word="1">Guns</button>
+            <button class="option" data-word="1">Bees</button>
         </div>
-        <div class="guess">
-            <label for="input" ><b>Guess: </b></label>
-            <input type="text" id="guess3">
+        <div class="mcq">
+            <h3>Word 3:</h3>
+            <button class="option" data-word="2">Doll</button>
+            <button class="option" data-word="2">Bark</button>
+            <button class="option" data-word="2">Gift</button>
+            <button class="option" data-word="2">Bull</button>
         </div>
-        <div class="guess">
-            <label for="input" ><b>Guess: </b></label>
-            <input type="text" id="guess4">
+        <div class="mcq">
+            <h3>Word 4:</h3>
+            <button class="option" data-word="3">Dust</button>
+            <button class="option" data-word="3">Tear</button>
+            <button class="option" data-word="3">Lift</button>
+            <button class="option" data-word="3">Ball</button>
         </div>
         <div><p id="result"></p></div>
-        <div><button id="but">
-            SUBMIT
-        </button></div>
-
+        <div><button id="capture">SUBMIT</button></div>
+        
     </div>
     <script src="scriptg.js"></script>
 </body>

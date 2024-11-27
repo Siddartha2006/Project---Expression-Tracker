@@ -1,30 +1,77 @@
-*{
-    margin: 0%;
-    padding: 0%;
+* {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
-html,body{
+
+html, body {
     height: 100%;
     width: 100%;
+    font-family: Arial, Helvetica, sans-serif; /* Added font family */
+    background-color: #f4f4f4; /* Light background color */
 }
-button{
-    padding: 8px;
-    background-color: rgb(45, 126, 231);
-    color:  aliceblue;
-    margin-top: 200px;
-    border: none;
 
-}
-li{
-    padding: 10px;
+#header {
     margin: 20px;
+    text-align: center; /* Centered header text */
+    color: rgb(38, 38, 120);
 }
-li:hover{
 
-    color: blue;
+hr {
+    border: 1px solid rgb(45, 126, 231); /* Styled horizontal line */
+    margin: 20px 0;
+}
+
+.content {
+    max-width: 800px; /* Set maximum width for content */
+    margin: auto; /* Center the content */
+    padding: 20px; /* Added padding for better spacing */
+    background: white; /* White background for content area */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+h2 {
+    margin-bottom: 20px; /* Space below heading */
+    color: rgb(45, 126, 231); /* Color for the heading */
+    text-align: center; /* Centered heading */
+}
+
+ul {
+    list-style-type: none; /* Remove bullet points */
+    padding: 0;
+}
+
+li {
+    padding: 10px;
+    margin: 10px 0; /* Adjusted margin for list items */
+    background: rgba(45, 126, 231, 0.1); /* Light background for list items */
+    border-radius: 5px; /* Rounded corners for list items */
+    transition: background-color 0.3s; /* Smooth background transition */
+}
+
+li:hover {
+    background: rgb(14, 39, 73); /* Highlight background on hover */
+    color: white; /* Change text color on hover */
     cursor: pointer;
 }
-#header{
-    margin: 30px 20px;
-    color: rgb(38, 38, 120);
+
+button {
+    padding: 10px 20px; /* Increased button padding */
+    background-color: rgb(45, 126, 231);
+    color: aliceblue;
+    border: none;
+    border-radius: 5px; /* Rounded button corners */
+    font-size: 16px; /* Larger font size for better readability */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Smooth background transition */
+    display: block; /* Make button a block element */
+    margin: 20px auto; /* Center the button */
+}
+
+button:hover {
+    background-color: rgb(14, 39, 73); /* Darker shade on hover */
+}
+a{
+    color: rgb(45, 126, 231);
 }

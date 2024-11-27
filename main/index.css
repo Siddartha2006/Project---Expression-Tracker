@@ -1,0 +1,102 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styles */
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #f4f4f9, #d1e6ff); /* Gradient background */
+}
+
+/* Navbar Styles */
+.navbar {
+    background-color: #007bff; /* Blue background for navbar */
+    color: white;
+    padding: 20px 40px;
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand-title {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.navbar-menu {
+    list-style: none;
+    display: flex;
+}
+
+.navbar-menu li {
+    margin-left: 20px; /* Space between menu items */
+}
+
+.navbar-menu a {
+    color: white;
+    text-decoration: none;
+    padding: 50px 10px;
+    border-radius: 5px; /* Rounded corners for links */
+    transition: background-color 0.3s;
+}
+
+.navbar-menu a:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Lighten on hover */
+}
+
+/* Main Content Styles */
+main {
+    text-align: center;
+    padding: 50px 20px;
+
+}
+
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.info-section {
+    display: flex;
+    align-items: center; /* Align items vertically */
+    justify-content: center; /* Center horizontally */
+    margin: 20px 0; /* Space around the section */
+}
+
+.info-image {
+    max-width: 500px; /* Adjust size as needed */
+    margin-right: 20px; /* Space between image and text */
+    border-radius: 10px; /* Rounded corners for the image */
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #333; /* Dark background for footer */
+    color: white;
+    position: fixed; /* Fix the footer at the bottom */
+    bottom: 0;
+    width: 100%; /* Full width */
+    left: 0; /* Align left */
+}
+button {
+    padding: 10px 20px; /* Increased button padding */
+    background-color: rgb(45, 126, 231);
+    color: aliceblue;
+    border: none;
+    border-radius: 5px; /* Rounded button corners */
+    font-size: 16px; /* Larger font size for better readability */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Smooth background transition */
+    display: block; /* Make button a block element */
+    margin: 20px auto; /* Center the button */
+}
+a{
+    color:white
+}
